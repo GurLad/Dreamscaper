@@ -4,7 +4,14 @@ using System;
 public class Card
 {
     public string Name { get; init; }
+    public string Emoji { get; init; }
     public ICardHolder AttachedHolder { get; set; }
+
+    public Card(string name, string emoji)
+    {
+        Name = name;
+        Emoji = emoji;
+    }
 
     public void Unattach()
     {
