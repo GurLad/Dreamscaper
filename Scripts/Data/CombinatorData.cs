@@ -23,7 +23,17 @@ public static class CombinatorDataHolder
     Rain,Rain,Storm
     Rain,Human,Nostalgic
     Human,Human,Love
-
+    Bullet,Bullet,War
+    Time,Time,Peace
+    Time,Wound,Peace
+    Bullet,Time,Exciting
+    Bullet,Wound,Exciting
+    Time,Machine,Exciting
+    Falling,Bird,Scary
+    Flying,Stone,Scary
+    Flying,Bird,Normal
+    Flying,Falling,Scary
+    Falling,Stone,Scary
     """;
 
     public static void Init()
@@ -31,7 +41,7 @@ public static class CombinatorDataHolder
         Dictionary<(string, string), string> result = new Dictionary<(string, string), string>();
         List<string> entries = rawData.ToLineBrokenList();
         entries.RemoveAll(a => !a.Contains(","));
-        entries.ForEach(a => 
+        entries.ForEach(a =>
         {
             string[] parts = a.Split(",");
             result.Add((parts[0], parts[1]), parts[2]);

@@ -23,7 +23,7 @@ public static class LevelDataHolder
 
     public static LevelData GetData(int id) => Levels[id];
 
-    private static string[] rawDatas = 
+    private static string[] rawDatas =
     {
         """
         Falling
@@ -38,10 +38,22 @@ public static class LevelDataHolder
         Nostalgic
         """,
         """
+        Bullet
+        Bullet
+        Time
+        Time
+        Machine
+        Wound
+        ~
+        Exciting
+        Exciting
+        Exciting
+        """,
+        """
+        Flying
+        Bird
+        Stone
         Falling
-        Human
-        Huge
-        Rock
         ~
         Scary
         Scary
@@ -56,7 +68,7 @@ public static class LevelDataHolder
             bool readingCards = true;
             List<string> cards = new List<string>();
             List<string> targets = new List<string>();
-            entries.ForEach(a => 
+            entries.ForEach(a =>
             {
                 if (a == "~")
                 {

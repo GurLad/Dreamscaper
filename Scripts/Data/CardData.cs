@@ -27,6 +27,13 @@ public static class CardDataHolder
     Falling,⬇️
     Rain,💦
     Human,🧑
+    Bullet,⁍
+    Time,⏳
+    Machine,⚙️
+    Wound,🩹
+    Flying,🥏
+    Stone,🪨
+    Bird,🐦
     Huge,⤴️
     Rock,🪨
     """;
@@ -35,7 +42,7 @@ public static class CardDataHolder
     {
         List<string> entries = rawData.ToLineBrokenList();
         entries.RemoveAll(a => !a.Contains(","));
-        entries.ForEach(a => 
+        entries.ForEach(a =>
         {
             string[] parts = a.Split(",");
             Cards.Add(new CardData(parts[0], parts[1]));
