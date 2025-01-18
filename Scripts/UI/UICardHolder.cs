@@ -89,7 +89,7 @@ public partial class UICardHolder : Control
         }
     }
 
-    private void DropCard(Card card)
+    public void DropCard(Card card)
     {
         Card = card;
         Render();
