@@ -27,6 +27,9 @@ public partial class UIEquation : Node
         cardHolder2.OnCardDropped += a => equation.Attach(a.Card, false);
         cardHolder2.OnCardUnattached += a => equation.Unattach(a.Card);
 
+        cardHolder1.Init(null);
+        cardHolder2.Init(null);
+
         equation.OnCombined += (s) =>
         {
             result.Text = s;
