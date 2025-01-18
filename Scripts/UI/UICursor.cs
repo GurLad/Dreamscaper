@@ -1,13 +1,28 @@
 using Godot;
 using System;
 
-public partial class UICursor : Node
+public partial class UICursor : Control
 {
     public static UICursor Current { get; private set; }
 
     [Export] private UICardRenderer renderer;
 
     public Card HeldCard { get; private set; }
+
+    public override void _Ready()
+    {
+        base._Ready();
+        Current = this;
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (@event is InputEventMouseMotion mouseMotionEvent)
+        {
+            Position = mouseMotionEvent.Position;
+        }
+    }
 
     public void HoldCard(Card card)
     {

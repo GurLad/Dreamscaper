@@ -28,10 +28,10 @@ public static class LevelDataHolder
         """
         Falling
         Falling
-        Rain
-        Rain
         Human
         Human
+        Rain
+        Rain
         ~
         Calm
         Scary

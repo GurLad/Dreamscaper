@@ -6,7 +6,7 @@ public class Deck : ACardHolder
 {
     public override bool IsFull => false;
 
-    private List<Card> cards;
+    private List<Card> cards = new List<Card>();
 
     public override void Attach(Card card)
     {

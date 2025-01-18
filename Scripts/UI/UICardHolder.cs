@@ -21,9 +21,16 @@ public partial class UICardHolder : Control
     private Vector2 baseRendererPosition;
     private Vector2 baseRendererScale;
 
+    public override void _Ready()
+    {
+        base._Ready();
+        AddChild(interpolator = new Interpolator());
+    }
+
     public void Init(Card card)
     {
         Card = card;
+        renderer.PivotOffset = renderer.Size / 2;
         baseRendererPosition = renderer.Position;
         baseRendererScale = renderer.Scale;
         MouseEntered += OnMouseEntered;
