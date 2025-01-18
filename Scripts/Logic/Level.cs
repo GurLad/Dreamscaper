@@ -22,7 +22,6 @@ public class Level
     {
         if (targets.Contains(result))
         {
-            Equation.RemoveAllCards().ForEach(a => Cards.Remove(a));
             OnMatched?.Invoke(result);
             targets.Remove(result);
             if (targets.Count <= 0)

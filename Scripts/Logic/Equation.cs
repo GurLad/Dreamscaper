@@ -23,6 +23,7 @@ public class Equation : ACardHolder
 
     public void Attach(Card card, bool? is1)
     {
+        base.Attach(card);
         if (is1 ?? (card1 == null))
         {
             card1 = card;
@@ -31,7 +32,6 @@ public class Equation : ACardHolder
         {
             card2 = card;
         }
-        base.Attach(card);
         if (Result != null)
         {
             OnCombined?.Invoke(Result);

@@ -9,7 +9,7 @@ public partial class UIEquation : Node
     [ExportCategory("Animation")]
     [Export] private float animationDuration = 0.5f;
     [Export] private float animationEndDelay = 0.5f;
-    [Export] private Material fadeMaterial;
+    [Export] private ShaderMaterial fadeMaterial;
 
     private Interpolator interpolator;
 
@@ -35,8 +35,8 @@ public partial class UIEquation : Node
             result.Text = s;
             interpolator.Interpolate(animationDuration, 
                 new Interpolator.InterpolateObject(
-                    t => fadeMaterial.Set("percent", t),
-                    (float)fadeMaterial.Get("percent"),
+                    t => fadeMaterial.SetShaderParameter("percent", t),
+                    (float)fadeMaterial.GetShaderParameter("percent"),
                     1,
                     Easing.EaseInOutSin
                 ));
@@ -46,8 +46,8 @@ public partial class UIEquation : Node
         {
             interpolator.Interpolate(animationDuration, 
                 new Interpolator.InterpolateObject(
-                    t => fadeMaterial.Set("percent", t),
-                    (float)fadeMaterial.Get("percent"),
+                    t => fadeMaterial.SetShaderParameter("percent", t),
+                    (float)fadeMaterial.GetShaderParameter("percent"),
                     1,
                     Easing.EaseInOutSin
                 ));
