@@ -5,54 +5,30 @@ using System.Collections.Generic;
 public class Level
 {
     public event Action OnComplete;
-    public event Action<List<bool>> OnUpdated;
+    public event Action<string> OnMatched;
 
     private List<string> targets;
-    private List<Equation> equations;
     private List<Card> cards;
+    private Equation equation;
     private Deck deck;
 
     public Level()
     {
         // TODO: Data...
-        equations.ForEach(a =>
-        {
-            a.OnCombined += (s) => CheckComplete();
-            a.OnUnattached += UpdateScore;
-        });
+        equation.OnCombined += CheckMatch;
     }
 
-    private void CheckComplete()
+    private void CheckMatch(string result)
     {
-        UpdateScore();
-        if (CalculateScore().Complete)
+        if (targets.Contains(result))
         {
-            OnComplete?.Invoke();
+            equation.RemoveAllCards().ForEach(a => cards.Remove(a));
+            OnMatched?.Invoke(result);
+            targets.Remove(result);
+            if (targets.Count <= 0)
+            {
+                OnComplete?.Invoke();
+            }
         }
-    }
-
-    private void UpdateScore()
-    {
-        OnUpdated?.Invoke(CalculateScore().Correct);
-    }
-
-    private (bool Complete, List<bool> Correct) CalculateScore()
-    {
-        List<string> results = equations.ConvertAll(a => a.Result).FindAll(a => a != null);
-        List<bool> correct = targets.ConvertAll(a => false);
-        bool complete = true;
-        targets.ForEach((a, i) =>
-        {
-            if (!results.Contains(a))
-            {
-                complete = false;
-            }
-            else
-            {
-                results.Remove(a);
-                correct[i] = true;
-            }
-        });
-        return (complete, correct);
     }
 }

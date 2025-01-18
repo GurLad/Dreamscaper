@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class Equation : ACardHolder
 {
@@ -59,5 +60,13 @@ public class Equation : ACardHolder
             return;
         }
         base.Unattach(card);
+    }
+
+    public List<Card> RemoveAllCards()
+    {
+        List<Card> cards = new List<Card>() { card1, card2 };
+        Unattach(card1);
+        Unattach(card2);
+        return cards;
     }
 }
