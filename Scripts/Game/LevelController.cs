@@ -26,7 +26,7 @@ public partial class LevelController : Node
     public void NextLevel()
     {
         levelNumber++;
-        SceneController.Current.TransitionToScene("Game");
+        SceneController.Current.TransitionToScene(levelNumber >= LevelDataHolder.Count ? "Win" : "Game");
     }
 
     public void RetryLevel()

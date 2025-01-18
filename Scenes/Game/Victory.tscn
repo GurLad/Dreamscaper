@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dradkovccunub"]
+
+[ext_resource type="Texture2D" uid="uid://80r5xbalpsww" path="res://Sprites/MenuSprites/backGround Image Clouds.png" id="1_32sb2"]
+[ext_resource type="Texture2D" uid="uid://dobfmnp2ffr7a" path="res://Sprites/MenuSprites/congrat.png" id="2_3a7n7"]
+
+[node name="Victory" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_32sb2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3a7n7")
+stretch_mode = 3

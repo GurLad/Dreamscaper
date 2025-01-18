@@ -23,6 +23,8 @@ public static class LevelDataHolder
 
     public static LevelData GetData(int id) => Levels[id];
 
+    public static int Count => Levels.Count;
+
     private static string[] rawDatas =
     {
         """

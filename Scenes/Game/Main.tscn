@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://csrqidjm02g2w"]
+[gd_scene load_steps=8 format=3 uid="uid://csrqidjm02g2w"]
 
 [ext_resource type="Script" path="res://Scripts/GodotUtils/SceneController.cs" id="1_nuxnl"]
 [ext_resource type="PackedScene" uid="uid://dwqq13470776f" path="res://Scenes/Game/Level.tscn" id="2_c0qcn"]
+[ext_resource type="PackedScene" uid="uid://dradkovccunub" path="res://Scenes/Game/Victory.tscn" id="3_k73fu"]
 [ext_resource type="Script" path="res://Scripts/GodotUtils/Transitions/FadeTransition.cs" id="3_yrp8n"]
 [ext_resource type="Script" path="res://Scripts/GodotUtils/MusicController.cs" id="4_c4oa5"]
 [ext_resource type="AudioStream" uid="uid://be6jhviv1dhou" path="res://Sounds/DreamscapeBackGroudMusicLoop.wav" id="5_6rgsy"]
@@ -11,7 +12,8 @@
 script = ExtResource("1_nuxnl")
 firstScene = "Game"
 scenes = {
-"Game": ExtResource("2_c0qcn")
+"Game": ExtResource("2_c0qcn"),
+"Win": ExtResource("3_k73fu")
 }
 pathTransition = NodePath("ColorRect")
 scenesNode = NodePath("Scenes")
