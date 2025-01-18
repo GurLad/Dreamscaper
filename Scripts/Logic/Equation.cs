@@ -9,7 +9,7 @@ public class Equation : ACardHolder
         get
         {
             if (card1 == null || card2 == null) return null;
-            return combinator.Combine(card1, card2);
+            return Combinator.Combine(card1, card2);
         }
     }
     public override bool IsFull => Result != null;
@@ -18,12 +18,6 @@ public class Equation : ACardHolder
 
     private Card card1;
     private Card card2;
-    private Combinator combinator;
-
-    public Equation(Combinator combinator)
-    {
-        this.combinator = combinator;
-    }
 
     public override void Attach(Card card) => Attach(card, null);
 

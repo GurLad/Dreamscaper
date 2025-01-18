@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqjj03i6y4edh"]
+
+[ext_resource type="Script" path="res://Scripts/Data/DataPreloader.cs" id="1_xu5yd"]
+
+[node name="DataPreloader" type="Node"]
+script = ExtResource("1_xu5yd")

@@ -25,7 +25,7 @@ public static class CardDataHolder
 
     private static string rawData = """
     Falling,⬇️
-    Water,💦
+    Rain,💦
     Human,🧑
     Huge,⤴️
     Rock,🪨

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwqq13470776f"]
+
+[ext_resource type="PackedScene" uid="uid://cex4kirge4s54" path="res://Scenes/UI/UIDeck.tscn" id="1_1rr1h"]
+[ext_resource type="Script" path="res://Scripts/Game/LevelController.cs" id="1_iv8to"]
+
+[node name="Level" type="Node" node_paths=PackedStringArray("deck")]
+script = ExtResource("1_iv8to")
+deck = NodePath("UI/UIDeck")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UIDeck" parent="UI" instance=ExtResource("1_1rr1h")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+grow_vertical = 0

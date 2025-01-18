@@ -9,7 +9,7 @@ public class Level
 
     public List<Card> Cards { get; } = new List<Card>();
     private List<string> targets { get; } = new List<string>();
-    private Equation equation;
+    private Equation equation = new Equation();
 
     public Level(LevelData data)
     {
