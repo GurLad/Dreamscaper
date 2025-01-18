@@ -8,7 +8,7 @@ public partial class UICardRenderer : Control
 
     public void Render(Card card)
     {
-        name.Text = card.Name.ToUpper();
+        name.Text = card.Name;
         emoji.Text = card.Emoji;
     }
 }

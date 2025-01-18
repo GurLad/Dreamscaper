@@ -1,11 +1,19 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 
 public static class ExtensionMethods
 {
     //private static readonly Random rng = new Random();
+
+    public static List<string> ToLineBrokenList(this string rawData)
+    {
+        List<string> entries = rawData.Trim().Replace("\r", "").Split('\n').ToList().ConvertAll(a => a.Trim());
+        entries.RemoveAll(a => string.IsNullOrEmpty(a));
+        return entries;
+    }
 
     // Math
 

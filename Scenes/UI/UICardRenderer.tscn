@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://tx46n0lg2fcl"]
+[gd_scene load_steps=3 format=3 uid="uid://tx46n0lg2fcl"]
 
 [ext_resource type="FontFile" uid="uid://ctelg5e70dhio" path="res://NotoColorEmoji-Regular.ttf" id="1_8bn04"]
+[ext_resource type="Script" path="res://Scripts/UI/UICardRenderer.cs" id="1_xis5k"]
 
-[node name="UICardRenderer" type="PanelContainer"]
-custom_minimum_size = Vector2(250, 250)
+[node name="UICardRenderer" type="PanelContainer" node_paths=PackedStringArray("name", "emoji")]
+custom_minimum_size = Vector2(300, 300)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -15,21 +16,29 @@ offset_right = 33.5
 offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xis5k")
+name = NodePath("VBoxContainer/Name")
+emoji = NodePath("VBoxContainer/Emoji")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Space" type="Control" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
+
+[node name="Name" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 1
+uppercase = true
 
-[node name="RichTextLabel" type="Label" parent="VBoxContainer"]
+[node name="Emoji" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_8bn04")
+theme_override_font_sizes/font_size = 90
 text = "💦"
 horizontal_alignment = 1
 vertical_alignment = 1

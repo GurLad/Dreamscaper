@@ -25,9 +25,11 @@ folder_colors={
 "res://Scenes/Game/": "orange",
 "res://Scenes/UI/": "yellow",
 "res://Scripts/": "green",
-"res://Scripts/GodotUtils/": "teal",
-"res://Scripts/Logic/": "blue",
-"res://Scripts/UI/": "purple"
+"res://Scripts/Data/": "teal",
+"res://Scripts/Game/": "blue",
+"res://Scripts/GodotUtils/": "purple",
+"res://Scripts/Logic/": "pink",
+"res://Scripts/UI/": "red"
 }
 
 [gui]

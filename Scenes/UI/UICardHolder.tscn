@@ -1,13 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://def0uvyiqttbb"]
+[gd_scene load_steps=3 format=3 uid="uid://def0uvyiqttbb"]
 
 [ext_resource type="PackedScene" uid="uid://tx46n0lg2fcl" path="res://Scenes/UI/UICardRenderer.tscn" id="1_avkk6"]
+[ext_resource type="Script" path="res://Scripts/UI/UICardHolder.cs" id="1_d8u83"]
 
-[node name="UICardHolder" type="CenterContainer"]
+[node name="UICardHolder" type="CenterContainer" node_paths=PackedStringArray("renderer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_d8u83")
+renderer = NodePath("UICardRenderer")
 
 [node name="UICardRenderer" parent="." instance=ExtResource("1_avkk6")]
 layout_mode = 2

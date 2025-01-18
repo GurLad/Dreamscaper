@@ -86,6 +86,13 @@ public partial class UICardHolder : Control
 
     public void Render()
     {
-        renderer.Render(card);
+        if (card != null)
+        {
+            renderer.Render(card);
+        }
+        else
+        {
+            renderer.Visible = false;
+        }
     }
 }

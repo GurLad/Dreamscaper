@@ -7,10 +7,10 @@ public class Card
     public string Emoji { get; init; }
     public ICardHolder AttachedHolder { get; set; }
 
-    public Card(string name, string emoji)
+    public Card(CardData data)
     {
-        Name = name;
-        Emoji = emoji;
+        Name = data.Name;
+        Emoji = data.Emoji;
     }
 
     public void Unattach()
