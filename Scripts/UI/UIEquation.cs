@@ -10,6 +10,9 @@ public partial class UIEquation : Node
     [Export] private float animationDuration = 0.5f;
     [Export] private float animationEndDelay = 0.5f;
     [Export] private ShaderMaterial fadeMaterial;
+    [ExportCategory("Sound")]
+    [Export] private AudioStream correctSFX;
+    [Export] private AudioStream wrongSFX;
 
     private Interpolator interpolator;
     private bool matched = false;
@@ -51,6 +54,8 @@ public partial class UIEquation : Node
                         cardHolder2.UnattachCard();
                         equation.RemoveAllCards();
                     }
+                    SoundController.Current.PlaySFX(matched ? correctSFX : wrongSFX);
+                    matched = false;
                 };
             };
         };

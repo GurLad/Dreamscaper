@@ -7,6 +7,9 @@ public partial class UICardHolder : Control
     [ExportCategory("Animation")]
     [Export] private float hoverTime = 0.2f;
     [Export] private float hoverSizeMod = 1.2f;
+    [ExportCategory("Sound")]
+    [Export] private AudioStream pickUpSound;
+    [Export] private AudioStream dropSound;
 
     [Signal]
     public delegate void OnCardDroppedEventHandler(UICardHolder cardHolder);
@@ -50,6 +53,7 @@ public partial class UICardHolder : Control
         EmitSignal(SignalName.OnCardUnattached, this);
         Card = null;
         Render();
+        SoundController.Current.PlaySFX(pickUpSound);
         return UICursor.Current;
     }
 
@@ -82,6 +86,7 @@ public partial class UICardHolder : Control
             }
             DropCard(cursor.HeldCard);
             cursor.DropCard(Card);
+            SoundController.Current.PlaySFX(dropSound);
         }
         else
         {

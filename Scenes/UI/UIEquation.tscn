@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://o7r1dvg25dyb"]
+[gd_scene load_steps=11 format=3 uid="uid://o7r1dvg25dyb"]
 
 [ext_resource type="Script" path="res://Scripts/UI/UIEquation.cs" id="1_8w4th"]
 [ext_resource type="PackedScene" uid="uid://def0uvyiqttbb" path="res://Scenes/UI/UICardHolder.tscn" id="1_fybjj"]
 [ext_resource type="Material" uid="uid://fe5l01edh1fd" path="res://Shaders/Dissolve.tres" id="2_a4c7k"]
 [ext_resource type="Script" path="res://Scripts/UI/UICardHolder.cs" id="2_bp1ex"]
+[ext_resource type="AudioStream" uid="uid://b3w7a0t4kbht6" path="res://Sounds/CorrectMissionFeedback.wav" id="3_gmwo7"]
 [ext_resource type="Script" path="res://Scripts/UI/UICardRenderer.cs" id="3_ue1ks"]
+[ext_resource type="AudioStream" uid="uid://d32xilaxtj5ua" path="res://Sounds/DiscardCardsNotCorrectMission.wav" id="4_p5iws"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvtjk"]
 content_margin_left = 20.0
@@ -51,6 +53,8 @@ cardHolder1 = NodePath("Card1/UICardHolder")
 cardHolder2 = NodePath("Card2/UICardHolder")
 result = NodePath("Result/UICardHolder/UICardRenderer/Result")
 fadeMaterial = ExtResource("2_a4c7k")
+correctSFX = ExtResource("3_gmwo7")
+wrongSFX = ExtResource("4_p5iws")
 
 [node name="Card1" type="PanelContainer" parent="."]
 layout_mode = 2

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwqq13470776f"]
+[gd_scene load_steps=8 format=3 uid="uid://dwqq13470776f"]
 
 [ext_resource type="PackedScene" uid="uid://cex4kirge4s54" path="res://Scenes/UI/UIDeck.tscn" id="1_1rr1h"]
 [ext_resource type="Script" path="res://Scripts/Game/LevelController.cs" id="1_iv8to"]
 [ext_resource type="Script" path="res://Scripts/UI/UIBackdrop.cs" id="2_q51ny"]
+[ext_resource type="AudioStream" uid="uid://cusbral14pvca" path="res://Sounds/ReloadLevelSFx.wav" id="2_vn7w4"]
 [ext_resource type="PackedScene" uid="uid://o7r1dvg25dyb" path="res://Scenes/UI/UIEquation.tscn" id="4_y4li4"]
 [ext_resource type="Script" path="res://Scripts/UI/UIGoal.cs" id="5_xxnn3"]
 [ext_resource type="PackedScene" uid="uid://bl63vyelsvott" path="res://Scenes/UI/UIGoalPart.tscn" id="6_pcfeq"]
@@ -12,6 +13,7 @@ script = ExtResource("1_iv8to")
 deck = NodePath("UI/UIDeck")
 equation = NodePath("UI/CenterContainer/UIEquation")
 goal = NodePath("UI/UIGoal")
+retrySFX = ExtResource("2_vn7w4")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

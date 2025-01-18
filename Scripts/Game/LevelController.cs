@@ -6,6 +6,8 @@ public partial class LevelController : Node
     [Export] private UIDeck deck;
     [Export] private UIEquation equation;
     [Export] private UIGoal goal;
+    [ExportCategory("Sound")]
+    [Export] private AudioStream retrySFX;
 
     private Level level;
 
@@ -30,5 +32,6 @@ public partial class LevelController : Node
     public void RetryLevel()
     {
         SceneController.Current.TransitionToScene("Game");
+        SoundController.Current.PlaySFX(retrySFX);
     }
 }
