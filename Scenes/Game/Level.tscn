@@ -47,7 +47,7 @@ anchors_preset = 12
 anchor_top = 1.0
 grow_vertical = 0
 
-[node name="UIGoal" type="CenterContainer" parent="UI"]
+[node name="UIGoal" type="HBoxContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

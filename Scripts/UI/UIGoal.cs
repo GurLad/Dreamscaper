@@ -21,6 +21,7 @@ public partial class UIGoal : Control
             part.Init(a);
             part.OnFinishAnimation += FinishedOne;
             goalParts.Add(part);
+            AddChild(part);
         });
         level.OnMatched += Match;
     }

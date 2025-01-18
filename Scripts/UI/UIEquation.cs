@@ -12,12 +12,12 @@ public partial class UIEquation : Node
     [Export] private ShaderMaterial fadeMaterial;
 
     private Interpolator interpolator;
+    private bool matched = false;
 
     public override void _Ready()
     {
         base._Ready();
-        interpolator = new Interpolator();
-        AddChild(interpolator);
+        AddChild(interpolator = new Interpolator());
     }
 
     public void Init(Level level, Equation equation)
@@ -40,6 +40,19 @@ public partial class UIEquation : Node
                     1,
                     Easing.EaseInOutSin
                 ));
+            interpolator.OnFinish = () =>
+            {
+                interpolator.Delay(animationEndDelay);
+                interpolator.OnFinish = () =>
+                {
+                    if (matched)
+                    {
+                        cardHolder1.UnattachCard();
+                        cardHolder2.UnattachCard();
+                        equation.RemoveAllCards();
+                    }
+                };
+            };
         };
 
         equation.OnUnattached += () =>
@@ -55,8 +68,7 @@ public partial class UIEquation : Node
 
         level.OnMatched += (s) =>
         {
-            cardHolder1.UnattachCard();
-            cardHolder2.UnattachCard();
+            matched = true;
         };
     }
 }
