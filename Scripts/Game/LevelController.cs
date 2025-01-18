@@ -5,16 +5,30 @@ public partial class LevelController : Node
 {
     [Export] private UIDeck deck;
     [Export] private UIEquation equation;
+    [Export] private UIGoal goal;
 
     private Level level;
 
-    private static int levelNumber;
+    private static int levelNumber = 0;
 
     public override void _Ready()
     {
         base._Ready();
         level = LevelDataHolder.GetLevel(levelNumber);
         deck.Init(level.Cards);
-        equation.Init(level.Equation);
+        equation.Init(level, level.Equation);
+        goal.Init(level);
+        goal.OnFinishAnimationAll += NextLevel;
+    }
+
+    public void NextLevel()
+    {
+        levelNumber++;
+        SceneController.Current.TransitionToScene("Game");
+    }
+
+    public void RetryLevel()
+    {
+        SceneController.Current.TransitionToScene("Game");
     }
 }

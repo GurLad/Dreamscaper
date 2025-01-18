@@ -98,6 +98,12 @@ public partial class UICardHolder : Control
         OnMouseExited();
     }
 
+    public void UnattachCard()
+    {
+        Card = null;
+        Render();
+    }
+
     private void OnMouseEntered()
     {
         interpolator.Interpolate(hoverTime,

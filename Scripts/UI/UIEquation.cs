@@ -20,7 +20,7 @@ public partial class UIEquation : Node
         AddChild(interpolator);
     }
 
-    public void Init(Equation equation)
+    public void Init(Level level, Equation equation)
     {
         cardHolder1.OnCardDropped += a => equation.Attach(a.Card, true);
         cardHolder1.OnCardUnattached += a => equation.Unattach(a.Card);
@@ -48,9 +48,15 @@ public partial class UIEquation : Node
                 new Interpolator.InterpolateObject(
                     t => fadeMaterial.SetShaderParameter("percent", t),
                     (float)fadeMaterial.GetShaderParameter("percent"),
-                    1,
+                    0,
                     Easing.EaseInOutSin
                 ));
+        };
+
+        level.OnMatched += (s) =>
+        {
+            cardHolder1.UnattachCard();
+            cardHolder2.UnattachCard();
         };
     }
 }

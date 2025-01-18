@@ -9,22 +9,22 @@ public class Level
 
     public List<Card> Cards { get; } = new List<Card>();
     public Equation Equation { get; }= new Equation();
-    private List<string> targets { get; } = new List<string>();
+    public List<string> Targets { get; } = new List<string>();
 
     public Level(LevelData data)
     {
         Cards.AddRange(data.Cards.ConvertAll(CardDataHolder.GetCard));
-        targets.AddRange(data.Targets);
+        Targets.AddRange(data.Targets);
         Equation.OnCombined += CheckMatch;
     }
 
     private void CheckMatch(string result)
     {
-        if (targets.Contains(result))
+        if (Targets.Contains(result))
         {
             OnMatched?.Invoke(result);
-            targets.Remove(result);
-            if (targets.Count <= 0)
+            Targets.Remove(result);
+            if (Targets.Count <= 0)
             {
                 OnComplete?.Invoke();
             }

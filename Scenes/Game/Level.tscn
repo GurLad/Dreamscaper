@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwqq13470776f"]
+[gd_scene load_steps=7 format=3 uid="uid://dwqq13470776f"]
 
 [ext_resource type="PackedScene" uid="uid://cex4kirge4s54" path="res://Scenes/UI/UIDeck.tscn" id="1_1rr1h"]
 [ext_resource type="Script" path="res://Scripts/Game/LevelController.cs" id="1_iv8to"]
 [ext_resource type="Script" path="res://Scripts/UI/UIBackdrop.cs" id="2_q51ny"]
 [ext_resource type="PackedScene" uid="uid://o7r1dvg25dyb" path="res://Scenes/UI/UIEquation.tscn" id="4_y4li4"]
+[ext_resource type="Script" path="res://Scripts/UI/UIGoal.cs" id="5_xxnn3"]
+[ext_resource type="PackedScene" uid="uid://bl63vyelsvott" path="res://Scenes/UI/UIGoalPart.tscn" id="6_pcfeq"]
 
-[node name="Level" type="Node" node_paths=PackedStringArray("deck", "equation")]
+[node name="Level" type="Node" node_paths=PackedStringArray("deck", "equation", "goal")]
 script = ExtResource("1_iv8to")
 deck = NodePath("UI/UIDeck")
 equation = NodePath("UI/CenterContainer/UIEquation")
+goal = NodePath("UI/UIGoal")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -43,3 +46,15 @@ layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 grow_vertical = 0
+
+[node name="UIGoal" type="CenterContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("5_xxnn3")
+sceneGoalPart = ExtResource("6_pcfeq")
