@@ -40,7 +40,6 @@ public class Level
     {
         List<string> results = equations.ConvertAll(a => a.Result).FindAll(a => a != null);
         List<bool> correct = targets.ConvertAll(a => false);
-        if (results.Count < targets.Count) return false;
         bool complete = true;
         targets.ForEach((a, i) =>
         {
