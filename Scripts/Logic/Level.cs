@@ -8,21 +8,21 @@ public class Level
     public event Action<string> OnMatched;
 
     public List<Card> Cards { get; } = new List<Card>();
+    public Equation Equation { get; }= new Equation();
     private List<string> targets { get; } = new List<string>();
-    private Equation equation = new Equation();
 
     public Level(LevelData data)
     {
         Cards.AddRange(data.Cards.ConvertAll(CardDataHolder.GetCard));
         targets.AddRange(data.Targets);
-        equation.OnCombined += CheckMatch;
+        Equation.OnCombined += CheckMatch;
     }
 
     private void CheckMatch(string result)
     {
         if (targets.Contains(result))
         {
-            equation.RemoveAllCards().ForEach(a => Cards.Remove(a));
+            Equation.RemoveAllCards().ForEach(a => Cards.Remove(a));
             OnMatched?.Invoke(result);
             targets.Remove(result);
             if (targets.Count <= 0)

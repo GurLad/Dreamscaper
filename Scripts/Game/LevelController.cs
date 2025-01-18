@@ -4,6 +4,7 @@ using System;
 public partial class LevelController : Node
 {
     [Export] private UIDeck deck;
+    [Export] private UIEquation equation;
 
     private Level level;
 
@@ -14,5 +15,6 @@ public partial class LevelController : Node
         base._Ready();
         level = LevelDataHolder.GetLevel(levelNumber);
         deck.Init(level.Cards);
+        equation.Init(level.Equation);
     }
 }

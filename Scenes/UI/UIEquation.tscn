@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://o7r1dvg25dyb"]
+[gd_scene load_steps=9 format=3 uid="uid://o7r1dvg25dyb"]
 
+[ext_resource type="Script" path="res://Scripts/UI/UIEquation.cs" id="1_8w4th"]
 [ext_resource type="PackedScene" uid="uid://def0uvyiqttbb" path="res://Scenes/UI/UICardHolder.tscn" id="1_fybjj"]
+[ext_resource type="Material" uid="uid://fe5l01edh1fd" path="res://Shaders/Dissolve.tres" id="2_a4c7k"]
 [ext_resource type="Script" path="res://Scripts/UI/UICardHolder.cs" id="2_bp1ex"]
 [ext_resource type="Script" path="res://Scripts/UI/UICardRenderer.cs" id="3_ue1ks"]
 
@@ -26,7 +28,13 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="UIEquation" type="HBoxContainer"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m1sfg"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[node name="UIEquation" type="HBoxContainer" node_paths=PackedStringArray("cardHolder1", "cardHolder2", "result")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -38,16 +46,26 @@ offset_right = 367.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8w4th")
+cardHolder1 = NodePath("Card1/UICardHolder")
+cardHolder2 = NodePath("Card2/UICardHolder")
+result = NodePath("Result/UICardHolder/UICardRenderer/Result")
+fadeMaterial = ExtResource("2_a4c7k")
 
 [node name="Card1" type="PanelContainer" parent="."]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hvtjk")
 
+[node name="PanelContainer" type="PanelContainer" parent="Card1"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_84n3y")
+
 [node name="UICardHolder" parent="Card1" instance=ExtResource("1_fybjj")]
 layout_mode = 2
 
 [node name="UICardRenderer" parent="Card1/UICardHolder" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_84n3y")
+visible = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m1sfg")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -59,11 +77,16 @@ text = "+"
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hvtjk")
 
+[node name="PanelContainer" type="PanelContainer" parent="Card2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_84n3y")
+
 [node name="UICardHolder" parent="Card2" instance=ExtResource("1_fybjj")]
 layout_mode = 2
 
 [node name="UICardRenderer" parent="Card2/UICardHolder" index="0"]
-theme_override_styles/panel = SubResource("StyleBoxFlat_84n3y")
+visible = false
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m1sfg")
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 2
@@ -81,20 +104,19 @@ layout_mode = 2
 script = ExtResource("2_bp1ex")
 renderer = NodePath("UICardRenderer")
 
-[node name="UICardRenderer" type="PanelContainer" parent="Result/UICardHolder" node_paths=PackedStringArray("name", "emoji")]
+[node name="UICardRenderer" type="PanelContainer" parent="Result/UICardHolder" node_paths=PackedStringArray("name")]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_84n3y")
 script = ExtResource("3_ue1ks")
-name = NodePath("Name")
-emoji = NodePath("")
+name = NodePath("Result")
 
-[node name="Name" type="Label" parent="Result/UICardHolder/UICardRenderer"]
+[node name="Result" type="Label" parent="Result/UICardHolder/UICardRenderer"]
+material = ExtResource("2_a4c7k")
 custom_minimum_size = Vector2(280, 280)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

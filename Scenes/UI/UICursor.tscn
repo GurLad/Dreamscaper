@@ -9,6 +9,7 @@ script = ExtResource("1_qwan1")
 renderer = NodePath("Control/UICardRenderer")
 
 [node name="Control" type="Control" parent="."]
+z_index = 1
 layout_mode = 2
 
 [node name="UICardRenderer" parent="Control" instance=ExtResource("1_xgkw0")]
