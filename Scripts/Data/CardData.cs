@@ -27,7 +27,7 @@ public static class CardDataHolder
     Falling,⬇️
     Rain,💦
     Human,🧑
-    Bullet,⁍
+    Bullet,⚫
     Time,⏳
     Machine,⚙️
     Wound,🩹

@@ -45,7 +45,7 @@ public partial class UIEquation : Node
                 interpolator.Delay(animationEndDelay);
                 interpolator.OnFinish = () =>
                 {
-                    if (matched)
+                    if (true)
                     {
                         cardHolder1.UnattachCard();
                         cardHolder2.UnattachCard();
