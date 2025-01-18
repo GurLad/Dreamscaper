@@ -13,7 +13,7 @@ config_version=5
 config/name="Dreamscaper"
 run/main_scene="res://Scenes/Game/Main.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Sprites/MenuSprites/backGround Image Clouds.png"
 
 [autoload]
 
@@ -24,6 +24,7 @@ UiCursor="*res://Scenes/UI/UICursor.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=880
 window/stretch/mode="canvas_items"
