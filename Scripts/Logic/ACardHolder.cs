@@ -12,26 +12,28 @@ public abstract class ACardHolder : ICardHolder
     {
         if (card.AttachedHolder != null)
         {
-            GD.PrintErr("[ACardHolder] : Attaching an attached card! " + card + ", " + this);
+            GD.PushError("[ACardHolder] : Attaching an attached card! " + card + ", " + this);
             return;
         }
         if (IsFull)
         {
-            GD.PrintErr("[ACardHolder] : Attaching to a filled equation! " + card + ", " + this);
+            GD.PushError("[ACardHolder] : Attaching to a filled equation! " + card + ", " + this);
             return;
         }
         card.AttachedHolder = this;
         OnAttached?.Invoke();
+        GD.Print("[ACardHolder] : Attach " + card + " to " + this);
     }
 
     public virtual void Unattach(Card card)
     {
         if (card.AttachedHolder != this)
         {
-            GD.PrintErr("[ACardHolder] : Unattaching an unattached card! " + card + ", " + this);
+            GD.PushError("[ACardHolder] : Unattaching an unattached card! " + card + ", " + this);
             return;
         }
         card.AttachedHolder = null;
         OnUnattached?.Invoke();
+        GD.Print("[ACardHolder] : Unattach " + card + " to " + this);
     }
 }

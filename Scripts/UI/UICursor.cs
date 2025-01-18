@@ -8,6 +8,7 @@ public partial class UICursor : Control
     [Export] private UICardRenderer renderer;
 
     public Card HeldCard { get; private set; }
+    public UICardHolder PreviousHolder { get; private set; }
 
     public override void _Ready()
     {
@@ -24,22 +25,23 @@ public partial class UICursor : Control
         }
     }
 
-    public void HoldCard(Card card)
+    public void HoldCard(Card card, UICardHolder previousHolder)
     {
         if (HeldCard != null)
         {
-            GD.PrintErr("[UICursor] : Already holding a card! Curr: " + HeldCard + ", new: " + card);
+            GD.PushError("[UICursor] : Already holding a card! Curr: " + HeldCard + ", new: " + card);
             return;
         }
         renderer.Render(HeldCard = card);
         renderer.Visible = true;
+        PreviousHolder = previousHolder;
     }
 
     public void DropCard(Card card)
     {
         if (HeldCard != card)
         {
-            GD.PrintErr("[UICursor] : No held card! Curr: " + HeldCard + ", new: " + card);
+            GD.PushError("[UICursor] : No held card! Curr: " + HeldCard + ", new: " + card);
             return;
         }
         renderer.Visible = false;

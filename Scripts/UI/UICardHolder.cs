@@ -40,18 +40,22 @@ public partial class UICardHolder : Control
 
     public override Variant _GetDragData(Vector2 atPosition)
     {
+        if (Card == null)
+        {
+            GD.PushWarning("[UICardHolder] : Dragging empty card!");
+            return this;
+        }
         OnMouseExited();
-        Card.Unattach();
-        renderer.Visible = false;
-        UICursor.Current.HoldCard(Card);
+        UICursor.Current.HoldCard(Card, this);
         EmitSignal(SignalName.OnCardUnattached, this);
         Card = null;
+        Render();
         return UICursor.Current;
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
-        if (data.As<GodotObject>() is UICursor cursor && cursor.HeldCard != null && Card == null)
+        if (data.As<GodotObject>() is UICursor cursor && cursor.HeldCard != null)
         {
             return true;
         }
@@ -62,17 +66,36 @@ public partial class UICardHolder : Control
     {
         if (data.As<GodotObject>() is UICursor cursor)
         {
-            Card = cursor.HeldCard;
+            if (Card != null)
+            {
+                if (cursor.PreviousHolder != null && cursor.PreviousHolder.Card == null)
+                {
+                    EmitSignal(SignalName.OnCardUnattached, this);
+                    cursor.PreviousHolder.DropCard(Card);
+                    Card = null;
+                }
+                else
+                {
+                    GD.PushError("[UICardHolder] : Drop previous holder issue!");
+                    return;
+                }
+            }
+            DropCard(cursor.HeldCard);
             cursor.DropCard(Card);
-            Render();
-            EmitSignal(SignalName.OnCardDropped, this);
-            renderer.Scale = baseRendererScale * hoverSizeMod;
-            OnMouseExited();
         }
         else
         {
-            GD.PrintErr("[UICardHolder]: Placing non-cards!");
+            GD.PushError("[UICardHolder]: Placing non-cards!");
         }
+    }
+
+    private void DropCard(Card card)
+    {
+        Card = card;
+        Render();
+        EmitSignal(SignalName.OnCardDropped, this);
+        renderer.Scale = baseRendererScale * hoverSizeMod;
+        OnMouseExited();
     }
 
     private void OnMouseEntered()
@@ -100,6 +123,7 @@ public partial class UICardHolder : Control
         if (Card != null)
         {
             renderer.Render(Card);
+            renderer.Visible = true;
         }
         else
         {

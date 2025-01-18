@@ -50,7 +50,7 @@ public class Equation : ACardHolder
         }
         else
         {
-            GD.PrintErr("[Equation] : Unattaching an unattached card (alt)! " + card + ", " + this);
+            GD.PushError("[Equation] : Unattaching an unattached card (alt)! " + card + ", " + this);
             return;
         }
         base.Unattach(card);
