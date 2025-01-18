@@ -7,14 +7,14 @@ public class Level
     public event Action OnComplete;
     public event Action<string> OnMatched;
 
-    private List<string> targets;
-    private List<Card> cards;
+    public List<Card> Cards { get; } = new List<Card>();
+    private List<string> targets { get; } = new List<string>();
     private Equation equation;
-    private Deck deck;
 
-    public Level()
+    public Level(LevelData data)
     {
-        // TODO: Data...
+        Cards.AddRange(data.Cards.ConvertAll(CardDataHolder.GetCard));
+        targets.AddRange(data.Targets);
         equation.OnCombined += CheckMatch;
     }
 
@@ -22,7 +22,7 @@ public class Level
     {
         if (targets.Contains(result))
         {
-            equation.RemoveAllCards().ForEach(a => cards.Remove(a));
+            equation.RemoveAllCards().ForEach(a => Cards.Remove(a));
             OnMatched?.Invoke(result);
             targets.Remove(result);
             if (targets.Count <= 0)

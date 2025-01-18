@@ -17,12 +17,18 @@ public class CardData
 
 public static class CardDataHolder
 {
-    public static List<CardData> Cards { get; } = new List<CardData>();
+    private static List<CardData> Cards { get; } = new List<CardData>();
+
+    public static Card GetCard(string s) => new Card(GetData(s));
+
+    public static CardData GetData(string s) => Cards.Find(a => a.Name == s);
 
     private static string rawData = """
     Falling,⬇️
     Water,💦
     Human,🧑
+    Huge,⤴️
+    Rock,🪨
     """;
 
     public static void Init()

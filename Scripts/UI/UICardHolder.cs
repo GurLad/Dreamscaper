@@ -11,7 +11,10 @@ public partial class UICardHolder : Control
     [Signal]
     public delegate void OnCardDroppedEventHandler(UICardHolder cardHolder);
 
-    private Card card;
+    [Signal]
+    public delegate void OnCardUnattachedEventHandler(UICardHolder cardHolder);
+
+    public Card Card { get; private set; }
 
     private Interpolator interpolator;
     
@@ -20,7 +23,7 @@ public partial class UICardHolder : Control
 
     public void Init(Card card)
     {
-        this.card = card;
+        Card = card;
         baseRendererPosition = renderer.Position;
         baseRendererScale = renderer.Scale;
         MouseEntered += OnMouseEntered;
@@ -31,16 +34,17 @@ public partial class UICardHolder : Control
     public override Variant _GetDragData(Vector2 atPosition)
     {
         OnMouseExited();
-        card.Unattach();
+        Card.Unattach();
         renderer.Visible = false;
-        UICursor.Current.HoldCard(card);
-        card = null;
+        UICursor.Current.HoldCard(Card);
+        EmitSignal(SignalName.OnCardUnattached, this);
+        Card = null;
         return UICursor.Current;
     }
 
     public override bool _CanDropData(Vector2 atPosition, Variant data)
     {
-        if (data.As<GodotObject>() is UICursor cursor && cursor.HeldCard != null && card == null)
+        if (data.As<GodotObject>() is UICursor cursor && cursor.HeldCard != null && Card == null)
         {
             return true;
         }
@@ -51,10 +55,10 @@ public partial class UICardHolder : Control
     {
         if (data.As<GodotObject>() is UICursor cursor)
         {
-            card = cursor.HeldCard;
-            cursor.DropCard(card);
+            Card = cursor.HeldCard;
+            cursor.DropCard(Card);
             Render();
-            EmitSignal(SignalName.OnCardDropped);
+            EmitSignal(SignalName.OnCardDropped, this);
             renderer.Scale = baseRendererScale * hoverSizeMod;
             OnMouseExited();
         }
@@ -86,9 +90,9 @@ public partial class UICardHolder : Control
 
     public void Render()
     {
-        if (card != null)
+        if (Card != null)
         {
-            renderer.Render(card);
+            renderer.Render(Card);
         }
         else
         {

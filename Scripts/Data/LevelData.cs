@@ -17,7 +17,11 @@ public class LevelData
 
 public static class LevelDataHolder
 {
-    public static List<LevelData> Levels { get; } = new List<LevelData>();
+    private static List<LevelData> Levels { get; } = new List<LevelData>();
+
+    public static Level GetLevel(int id) => new Level(GetData(id));
+
+    public static LevelData GetData(int id) => Levels[id];
 
     private static string[] rawDatas = 
     {
@@ -29,6 +33,18 @@ public static class LevelDataHolder
         Human
         Human
         ~
+        Calm
+        Scary
+        Nostalgic
+        """,
+        """
+        Falling
+        Human
+        Huge
+        Rock
+        ~
+        Scary
+        Scary
         """,
     };
 
